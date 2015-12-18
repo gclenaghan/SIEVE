@@ -277,10 +277,10 @@ function getInputFilenames(studyname, protein, reference, dist_metric){
 	result.resultsFile = "http://sieve.fredhutch.org/data/results.csv?study=" + studyname + "&protein=" + protein + "&reference=" + reference;
 	*/
 	/* Using data obtained from the API, stored locally */ 
-	result.treatmentFile = "localdata/treatment.csv";
-	result.sequenceFastaFile = "localdata/alignment.fasta";
-	result.distanceFile = "localdata/distance.csv";
-	result.resultsFile = "localdata/results.csv";
+	result.treatmentFile = "localdata/VTN502-gag-MRK/treatment.csv";
+	result.sequenceFastaFile = "localdata/VTN502-gag-MRK/alignment.fasta";
+	result.distanceFile = "localdata/VTN502-gag-MRK/distance.csv";
+	result.resultsFile = "localdata/VTN502-gag-MRK/results.csv";
 	
 	return result;
 }
