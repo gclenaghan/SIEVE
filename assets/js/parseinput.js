@@ -261,10 +261,25 @@ function transpose(array) {
 /**  */
 function getInputFilenames(studyname, protein, reference, dist_metric){
 	var result = {};
+	
+	/* For access from the web branch
 	result.treatmentFile = "../data/treatment.csv?study=" + studyname;
 	result.sequenceFastaFile = "../data/alignment.fasta?study=" + studyname + "&protein=" + protein + "&reference=" + reference;
 	result.distanceFile = "../data/distance.csv?study=" + studyname + "&protein=" + protein + "&reference=" + reference;
 	result.resultsFile = "../data/results.csv?study=" + studyname + "&protein=" + protein + "&reference=" + reference;
+	*/
+	/* Remote accessing data using the API 
+	result.treatmentFile = "http://sieve.fredhutch.org/data/treatment.csv?study=" + studyname;
+	result.sequenceFastaFile = "http://sieve.fredhutch.org/data/alignment.fasta?study=" + studyname + "&protein=" + protein + "&reference=" + reference;
+	result.distanceFile = "http://sieve.fredhutch.org/data/distance.csv?study=" + studyname + "&protein=" + protein + "&reference=" + reference;
+	result.resultsFile = "http://sieve.fredhutch.org/data/results.csv?study=" + studyname + "&protein=" + protein + "&reference=" + reference;
+	*/
+	/* Using data obtained from the API, stored locally */ 
+	result.treatmentFile = "localdata/treatment.csv";
+	result.sequenceFastaFile = "localdata/alignment.fasta";
+	result.distanceFile = "localdata/distance.csv";
+	result.resultsFile = "localdata/results.csv";
+	
 	return result;
 }
 function getParameterByName(name) {
