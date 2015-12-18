@@ -51,6 +51,7 @@ d3.select(window).on("mouseup", function(){ last_updated = undefined; mouse_down
 
 d3.select("#hxb2_select").on("keypress", hxb2_selection);
 d3.select("#yscale_selector").on("input", yscale_selection);
+d3.select("#distMethod_selector").on("input", distMethod_selection);
 
 function overview_yscale(site)
 {
@@ -433,6 +434,24 @@ function hxb2_selection()
 function yscale_selection()
 {
 	yscale_mode = d3.event.target.value;
+	var newYScale = statScales[dist_metric][yscale_mode];
+	if (newYScale.domain()[0] == -1){
+		newYScale.domain([d3.min(siteStats[dist_metric][yscale_mode]), d3.max(siteStats[dist_metric][yscale_mode])]);
+	}
+	
+	d3.selectAll(".sitebars")
+		.transition(500)
+		.attr("y", function(d, i) { return overview_yscale(i); })
+		.attr("height", function(d, i) {return height - overview_yscale(i);});
+		
+	siteselSVGg.select(".y.axis.l").transition().call(statAxes[dist_metric][yscale_mode].left);
+	siteselSVGg.select(".y.axis.r").transition().call(statAxes[dist_metric][yscale_mode].right);
+	d3.select(".y.axis.label").text(yscale_mode);
+}
+
+function distMethod_selection()
+{
+	dist_metric = d3.event.target.value;
 	var newYScale = statScales[dist_metric][yscale_mode];
 	if (newYScale.domain()[0] == -1){
 		newYScale.domain([d3.min(siteStats[dist_metric][yscale_mode]), d3.max(siteStats[dist_metric][yscale_mode])]);
