@@ -439,7 +439,6 @@ function yscale_selection()
 	}
 	
 	d3.selectAll(".sitebars")
-		.filter(function(d, i) { return i != selected_sites[_.sortedIndex(selected_sites, i)]; })
 		.transition(500)
 		.attr("y", function(d, i) { return overview_yscale(i); })
 		.attr("height", function(d, i) {return height - overview_yscale(i);});
