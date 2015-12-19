@@ -281,12 +281,15 @@ function generateSiteSelector() {
 			opacity_scale.domain([visWindowSpan/2, visWindowSpan/2 + .01*visWindowSpan]);
 			// update opacity of sitebars based on drawing window
 			sitebars.attr("display", function(d,i){
-				var site_x_loc = parseFloat(sitebars[0][i].getAttribute("x")) + origSiteBarWidth/2;
+				var site_x_loc = parseFloat(this.getAttribute("x")) + origSiteBarWidth/2;
 				if (opacity_scale(Math.abs(visWindowMidpt - site_x_loc)) > 0) {
 					return "default";
 				} else {
 					return "none";
 				}
+			}).style("opacity", function(d,i){
+				var site_x_loc = parseFloat(this.getAttribute("x")) + origSiteBarWidth/2;
+				return opacity_scale(Math.abs(visWindowMidpt - site_x_loc));
 			});
 			// update position of text
 			siteAALabels
